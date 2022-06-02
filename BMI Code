@@ -1,1 +1,17 @@
-#Maria I Suarez
+#SophiaSachedina
+#First ask user for weight
+#Then ask user for height
+#Variables
+#Num1 will be weight
+#Num2 will be height 
+
+import os
+
+os.system('cls') 
+
+#variables
+Num1=54
+Num2=1.6
+answer=Num1/Num2^2
+
+print('The Body Mass Index of a person who weighs', Num1 "kilos and is", Num2 "meters tall is", answer)
