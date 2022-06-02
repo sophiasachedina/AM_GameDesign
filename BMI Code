@@ -12,6 +12,7 @@ os.system('cls')
 #variables
 Num1=54
 Num2=1.6
-answer=Num1/Num2^2
+answer=int(Num1/(Num2*Num2)*100)
+answer=answer/100
 
-print('The Body Mass Index of a person who weighs', Num1 "kilos and is", Num2 "meters tall is", answer)
+print('The Body Mass Index of a person who weighs', Num1, "kilos and is", Num2, "meters tall is", answer)
