@@ -47,5 +47,5 @@ guess = input("type your guess")
 if guess.lower() == word.lower():
     print("your guess is correct!")
 #message if the guess is incorrect
-else:
+if guess.lower() != word.lower():
     print("sorry you missed:(")
