@@ -42,7 +42,7 @@ print(word)
 #hint
 print("hint: the answer is a language")
 #tell user to type their guess 
-guess = input("type your guess")
+guess = input("type your guess ")
 #message if the guess is correct
 if guess.lower() == word.lower():
     print("your guess is correct!")
