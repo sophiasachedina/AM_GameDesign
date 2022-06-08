@@ -63,7 +63,7 @@ while Game:
     os.system('cls')
     check=True
     while check and cnt <5:
-        guess=input("plese put your guess here: ")
+        guess=input("type your guess: ")
         print()
         if guess == theWord:
             print("Yay! You guessed correct!")
@@ -80,10 +80,10 @@ while Game:
     input("Press enter ")
     os.system('cls')
   
-    answer=input("Do yo want to play again? ")
+    answer=input("Do you want to play again? ")
     if ('n' or 'N') in answer:
         Game=False
         print("Thank you for playing! I hope you enjoyed:)" )
     
     cnt=0 
-print("your highest score is " + str(high))
+print("Wow! Your highest score was: " + str(high))
