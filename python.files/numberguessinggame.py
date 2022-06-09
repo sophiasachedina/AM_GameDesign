@@ -59,7 +59,6 @@ while Game:
     os.system('cls')
     check=True
     while check and cnt < 5:
-        
         message="give me a number between "+ level
         guess=int(input(message))
         if guess==theNum:
