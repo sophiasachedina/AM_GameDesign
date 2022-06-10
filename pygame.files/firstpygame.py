@@ -4,12 +4,16 @@
 #pygame basic functions
 #creating screens, colors, shapes
 
+from cv2 import insertChannel, sqrt
 import pygame, time
 pygame.init() #initialize the pygame package
 
 #perimeter
 WIDTH=700 #llike a constant, 700 is referring to pixels
 HEIGHT=700
+#key
+colors={"white":(255,255,255), "pink":(255,0,255), "limegreen":(153,255,51)}
+colors.get("limegreen")
 #create display window with any name you want
 screen=pygame.display.set_mode((WIDTH,HEIGHT))
 #Change the title of window
