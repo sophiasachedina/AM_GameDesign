@@ -4,11 +4,12 @@
 import os
 os.system ("cls")
 import random
+title="guessing number game"
 continuePlaying = True
 count = 0
 level = 1
 score = 0
-
+high=0
 name=input("What is your name? ")
 
 def game (level, theNum):
@@ -25,10 +26,12 @@ def game (level, theNum):
             print("You guessed it right!")
             ifNotGuessed = False
         else:
+            guesses+=1                                 #y must increse guesses
             print("Sorry, you got it wrong:( Please try again.")     
-    if ifNotGuessed == True:
+    if ifNotGuessed:
         print("Oh No! You lose")
-    
+    score=500-10*guesses                                 #sc has tbe here
+    print(name+ ", your score is "+str(score))
 print ("Hi, " +name, "Welcome to Guess the Number!")
 
 
@@ -55,31 +58,33 @@ while continuePlaying:
     elif selection == 4:
         game(level, 100)
     elif selection == 5:
-        while count <5:
-            print() 
-        score=500-10*count   
-        print(name+ ", your score is "+str(score))
+        #add the commented part  the files here
+ 
+        print(name+ ", your score is "+str(score))#this should be in game
+        input("press enter when ready") # I added this tbe able tsee message
     elif selection == 6:
         continuePlaying = False
         import os, datetime
 
         os.system('cls')
-        high=score
+        
         date=datetime.datetime.now()
-        print(date)
-        print(date.strftime("%m-%d-%Y"))
+        # print(date)
+        # print(date.strftime("%m-%d-%Y"))
         sce=str(high)
         scrLine=str(sce)+"\t "+name + "\t"+date.strftime("%m-%d-%Y")+ "\n"
         myFile = open("scre.txt", 'a')
         myFile.write(scrLine)
         myFile.close()
-        myFile = open("scre.txt", 'r')
-        stuff=myFile.readlines()
-        stuff.sort(reverse=True)
-        myFile.close()
-        for line in stuff:
-            print(line)
-        
-        
+        # myFile = open("scre.txt", 'r')
+        # stuff=myFile.readlines()
+        # stuff.sort(reverse=True)
+        # myFile.close()
+        # for line in stuff:
+        #     print(line)
 
+        # all this is part selection == 5:
 
+    if score>high:                                #y must update high      
+        high = score
+        
