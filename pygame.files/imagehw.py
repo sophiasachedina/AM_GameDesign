@@ -8,7 +8,7 @@ pygame.display.set_caption("First Game")
 walkRight = [pygame.image.load('pygame.files\images\images\R1.png'), pygame.image.load('pygame.files\images\images\R2.png'), pygame.image.load('pygame.files\images\images\R3.png'), pygame.image.load('pygame.files\images\images\R4.png'), pygame.image.load('pygame.files\images\images\R5.png'), pygame.image.load('pygame.files\images\images\R5.png'), pygame.image.load('pygame.files\images\images\R7.png'), pygame.image.load('pygame.files\images\images\R8.png'), pygame.image.load('pygame.files\images\images\R9.png')]
 walkLeft = [pygame.image.load('pygame.files\images\images\L1.png'), pygame.image.load('pygame.files\images\images\L2.png'), pygame.image.load('pygame.files\images\images\L3.png'), pygame.image.load('pygame.files\images\images\L4.png'), pygame.image.load('pygame.files\images\images\L5.png'), pygame.image.load('pygame.files\images\images\L6.png'), pygame.image.load('pygame.files\images\images\L7.png'), pygame.image.load('pygame.files\images\images\L8.png'), pygame.image.load('pygame.files\images\images\L9.png')]
 bg = pygame.image.load('pygame.files\images\images\bg1.jpg')
-char = pygame.image.load('standing.png')
+char = pygame.image.load('pygame.files\images\images\standing.png')
 
 clock = pygame.time.Clock()
 
