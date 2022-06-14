@@ -4,7 +4,7 @@
 #pygame basic functions
 #creating screens, colors, shapes
 
-from cv2 import insertChannel, sqrt
+
 import pygame, time
 pygame.init() #initialize the pygame package
 
