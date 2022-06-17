@@ -141,7 +141,7 @@ def checkWinner():
             tieGame()
 
 def gameEnd():
-    global Game
+    global markers, gameOver
     Game = False
     screen.fill(backgrnd)
     #question
@@ -158,26 +158,34 @@ def gameEnd():
     screen.blit(textYes, (WIDTH//4, HEIGHT//2))
     screen.blit(textNo, (size*WIDTH//4, HEIGHT//2))
     pygame.display.update()
-    pygame.time.delay(10000)
-    for event in pygame.event.get():
-        if event.type==pygame.MOUSEBUTTONDOWN:
-            mousePos=pygame.mouse.get_pos()
-            mx=mousePos[0]
-            my=mousePos[1]
-            if Button_yes.collidepoint((mx, my)):
-                Game = True
-                zero_Array()
-            if Button_no.collidepoint((mx, my)):
-                text=MENU_FONT.render('Bye!', 1, (circlecolor))
-                screen.fill(backgrnd)
-                screen.blit(text, (WIDTH/2.5, HEIGHT/2.5))
-                Game = False
-                pygame.display.update()
-                pygame.time.delay(1000)
-                pygame.display.quit()
+    run = True
+    while run:
+        for event in pygame.event.get():
+            for event in pygame.event.get():
+                print() #go to main menu
+            if event.type==pygame.MOUSEBUTTONDOWN:
+                mousePos=pygame.mouse.get_pos()
+                mx=mousePos[0]
+                my=mousePos[1]
+                if Button_yes.collidepoint((mx, my)):
+                    run = False
+                    markers = []
+                    zero_Array()
+                    gameOver = False
+                if Button_no.collidepoint((mx, my)):
+                    text=MENU_FONT.render('Bye!', 1, (circlecolor))
+                    screen.fill(backgrnd)
+                    screen.blit(text, (WIDTH/2.5, HEIGHT/2.5))
+                    Game = False
+                    pygame.display.update()
+                    pygame.time.delay(1000)
+                    pygame.display.quit()
+                    sys.exit()
+    print("end of function")
+                    #go to main meny
                 
-
 zero_Array()
+
 while Game:
     screen.fill(backgrnd)
     grid()
@@ -196,4 +204,6 @@ while Game:
                 checkWinner()
                 print(winner)
                 if gameOver:
+                    gameOver = False
                     gameEnd()
+                    print("im back")
