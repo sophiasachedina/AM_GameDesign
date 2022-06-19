@@ -17,6 +17,7 @@ colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(1
 messageMenu=['Instructions', 'Settings', 'Game 1', 'Game 2', 'Scoreboard', 'Exit']
 messageSettings=["Background Color", "Screen Size", "Sound"]
 titleMain="Main Menu"
+clock = pygame.time.Clock()
 
 #Creating New Window
 screen=pygame.display.set_mode((WIDTH,HEIGHT)) 
@@ -101,8 +102,6 @@ def Menu(Title, message, MENU):
                 pygame.display.update()
                 pygame.quit()
                 sys.exit()
-
-                
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mousePos = pygame.mouse.get_pos()
                 mx = mousePos[0]
@@ -300,5 +299,6 @@ def game():
 
         #pygame.draw.rect(screen, colors.get('white'), mountainSquare,)
         pygame.display.update()
+        clock.tick(60)
 
 Menu(titleMain,messageMenu, True)
