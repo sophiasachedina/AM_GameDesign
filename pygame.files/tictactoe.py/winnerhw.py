@@ -22,7 +22,10 @@ colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(1
 screen=pygame.display.set_mode((WIDTH,HEIGHT)) 
 pygame.display.set_caption('Tic Tac Toe')
 
+clock = pygame.time.Clock()
 
+player1score = 0
+player2score = 0
 size = 3
 player=1   
 gameOver=False 
@@ -69,8 +72,14 @@ def draw_Markers():
 #function for is x wins
 def x_winner():
     screen.fill(backgrnd)
-    text=MENU_FONT.render('Player X won!', 1, (circlecolor))
-    screen.blit(text, (WIDTH/2.5, HEIGHT/2.5))
+    scorex = str(player1score)
+    scoreo = str(player2score)
+    textx = MENU_FONT.render('Player X won!', 1, (circlecolor))
+    pl1txt = MENU_FONT.render('Player X score = '+scorex, 1, (circlecolor))
+    pl2txt = MENU_FONT.render('Player O score = '+scoreo, 1, (circlecolor))
+    screen.blit(pl1txt, (WIDTH/4, HEIGHT/1.5))
+    screen.blit(pl2txt, (WIDTH/1.75, HEIGHT/1.5))
+    screen.blit(textx, (WIDTH/size, HEIGHT/size))
     pygame.display.update()
     pygame.time.delay(2000)
     gameEnd()
@@ -78,7 +87,13 @@ def x_winner():
 #function for if o wine
 def o_winner():
     screen.fill(backgrnd)
+    scorex = str(player1score)
+    scoreo = str(player2score)
     texto=MENU_FONT.render('Player O won!', 1, (circlecolor))
+    pl1txt = MENU_FONT.render('Player X score = '+scorex, 1, (circlecolor))
+    pl2txt = MENU_FONT.render('Player O score = '+scoreo, 1, (circlecolor))
+    screen.blit(pl1txt, (WIDTH/4, HEIGHT/1.5))
+    screen.blit(pl2txt, (WIDTH/1.75, HEIGHT/1.5))
     screen.blit(texto, (WIDTH/2.5, HEIGHT/2.5))
     pygame.display.update()
     pygame.time.delay(2000)
@@ -87,6 +102,13 @@ def o_winner():
 #function for tie
 def tieGame():
     screen.fill(backgrnd)
+    scorex = str(player1score)
+    scoreo = str(player2score)
+    texto=MENU_FONT.render('Player O won!', 1, (circlecolor))
+    pl1txt = MENU_FONT.render('Player X score = '+scorex, 1, (circlecolor))
+    pl2txt = MENU_FONT.render('Player O score = '+scoreo, 1, (circlecolor))
+    screen.blit(pl1txt, (WIDTH/4, HEIGHT/1.5))
+    screen.blit(pl2txt, (WIDTH/1.75, HEIGHT/1.5))
     textTie=MENU_FONT.render("It's a tie!", 1, (circlecolor))
     screen.blit(textTie, (WIDTH/2.5, HEIGHT/2.5))
     pygame.display.update()
@@ -95,35 +117,40 @@ def tieGame():
 
 #function to check for winners
 def checkWinner():
-    global gameOver, winner
+    global gameOver, winner, player1score, player2score
     x_position=0
     for x in markers:
         if sum(x)==3:
-            winner =1
+            winner = 1
+            player1score += 1
             gameOver=True
             x_winner()
         if sum(x)==-3:
             winner = -1
+            player2score += 1
             gameOver = True
             o_winner()
         #check rows for winner
         if markers[0][x_position]+markers[1][x_position]+markers[2][x_position] ==3:
             winner = 1
+            player1score += 1
             gameOver=True
-            x_winner()
-        
+            x_winner()        
         if markers[0][x_position]+markers[1][x_position]+markers[2][x_position] ==-3:
             winner = -1
+            player2score += 1
             gameOver=True
             o_winner()
         x_position +=1
     #check diagonals for winner
     if markers[0][0]+markers[1][1]+markers[2][2] == 3 or markers[2][0]+markers[1][1]+markers[0][2] ==3:
         winner=1
+        player1score += 1
         gameOver=True
         x_winner()
     if markers[0][0]+markers[1][1]+markers[2][2] == -3 or markers[2][0]+markers[1][1]+markers[0][2] == -3:
         winner=-1
+        player2score += 1
         gameOver=True
         o_winner()
     #check for tie
@@ -181,12 +208,12 @@ def gameEnd():
                     pygame.time.delay(1000)
                     pygame.display.quit()
                     sys.exit()
-    print("end of function")
                     #go to main meny
                 
 zero_Array()
 
 while Game:
+    clock.tick(60)
     screen.fill(backgrnd)
     grid()
     draw_Markers()
@@ -207,3 +234,6 @@ while Game:
                     gameOver = False
                     gameEnd()
                     print("im back")
+
+pygame.display.update()
+clock.tick(60)
