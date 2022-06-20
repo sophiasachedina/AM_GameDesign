@@ -596,14 +596,13 @@ def game2():
                     Menu(titleMain, messageMenu, True)
                 if event.type==pygame.QUIT:
                         Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("black"))
-                        screen.fill(colors.get('white'))
+                        screen.fill(menuColor)
                         xd = WIDTH//2 - (Title.get_width()//2)
                         yd = HEIGHT//2- 40
                         screen.blit(Title, (xd, yd))
                         pygame.display.update()
                         pygame.time.delay(1000)
-                        pygame.quit()
-                        sys.exit()
+                        Menu(titleMain, messageMenu, True)
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     mousePos=pygame.mouse.get_pos()
                     mx=mousePos[0]
@@ -613,6 +612,7 @@ def game2():
                         markers = []
                         zero_Array()
                         gameOver = False
+                        game2()
                     if Button_no.collidepoint((mx, my)):
                         text=MENU_FONT.render('Bye!', 1, (circlecolor))
                         screen.fill(backgrnd)
