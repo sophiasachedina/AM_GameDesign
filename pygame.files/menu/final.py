@@ -77,8 +77,8 @@ Game = False
 clock= pygame.time.Clock()
 backgrndClr=(255,255,255)
 run=True #run the while
-namecolor=(0,105,105)  #text  the name
-boxcolor= (200,200,200)  #text b
+namecolor=(colors.get("BLACK"))  
+boxcolor= (colors.get("PINK"))  
 
 #settings variable
 menuColor = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
@@ -175,7 +175,7 @@ def namebox():
             pygame.draw.rect(screen, boxcolor, inputrectangle)
     
             textsurface = MENU_FONT.render(username, True, namecolor)
-            screen.blit(textsurface, (inputrectangle.x+5, inputrectangle.y+5))
+            screen.blit(textsurface, (inputrectangle.x+10, inputrectangle.y-5))
             
             pygame.display.flip()
             
