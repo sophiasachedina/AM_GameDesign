@@ -81,14 +81,14 @@ namecolor=(colors.get("BLACK"))
 boxcolor= (colors.get("PINK"))  
 
 #settings variable
-menuColor = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+menuColor = colors.get("white")
 
 
 #menu function
 def Menu(Title, message, MENU):
     
     Title = TITLE_FONT.render(Title, 1, colors.get("BLACK"))
-    screen.fill(colors.get('white'))
+    screen.fill(menuColor)
     xd = WIDTH//2 - (Title.get_width()//2)
     screen.blit(Title, (xd, 50))
     yMenu=150
@@ -106,7 +106,7 @@ def Menu(Title, message, MENU):
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("BLACK"))
-                screen.fill(colors.get('white'))
+                screen.fill(menuColor)
                 xd = WIDTH//2 - (Title.get_width()//2)
                 yd = HEIGHT//2- 40
                 screen.blit(Title, (xd, yd))
@@ -118,7 +118,7 @@ def Menu(Title, message, MENU):
                 mx = mousePos[0]
                 my = mousePos[1]
                 if Button_Instructions.collidepoint((mx, my)):
-                    instructions("Instructions","pygame.files\instructions.txt")
+                    instructions("Instructions","pygame.files\menu\instructions.txt")
                 if Button_settings.collidepoint((mx, my)):
                     settings()
                 if Button_Level1.collidepoint((mx,my)):
@@ -147,7 +147,7 @@ def Menu(Title, message, MENU):
 def namebox():
     screen=pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption("Get Name")
-    screen.fill(backgrndClr)
+    screen.fill(menuColor)
     username=''
     title=TITLE_FONT.render("Enter Name", 1, boxcolor)
     screen.blit(title,(200,50))
@@ -186,7 +186,7 @@ def namebox():
 def instructions(titleF,fileN):
     
     #white bg
-    screen.fill(colors.get("white"))
+    screen.fill(menuColor)
     
     #title
     Title = TITLE_FONT.render(titleF, 1, colors.get("BLACK"))
@@ -230,7 +230,7 @@ def instructions(titleF,fileN):
 def score(titleF,fileN):
     
     #fills screen with white
-    screen.fill(colors.get("white"))
+    screen.fill(menuColor)
     Title = TITLE_FONT.render(titleF, 1, colors.get("BLACK"))
     xd = WIDTH//2 - (Title.get_width()//2)
     screen.blit(Title, (xd, 50))
@@ -269,28 +269,13 @@ def score(titleF,fileN):
 
 #settings function
 def settings():
-    #Menu("Settings",messageSettings, False)
-    #while True:
-        #for event in pygame.event.get():
-            #if event.type==pygame.QUIT:
-                #Menu(titleMain,messageMenu,True)
-            #if event.type == pygame.MOUSEBUTTONDOWN:
-                #mousePos = pygame.mouse.get_pos()
-                #mx = mousePos[0]
-                #my = mousePos[1]
-                #if Button_changecolors.collidepoint((mx, my)):
-                    #print("code to change colors")
-                #if Button_changescreensize.collidepoint((mx, my)):
-                    #print("code to change size")
-                #if Button_changesound.collidepoint((mx, my)):
-                    #print("code to change sounds")
     global menuColor
     global screen 
     global WIDTH
     global HEIGHT
     title=TITLE_FONT.render('Settings', 1, colors.get('BLACK'))
 
-    screen.fill(colors.get("white"))
+    screen.fill(menuColor)
 
     color=MENU_FONT.render('Change Background Color:', 1, colors.get('PINK'))
     screen.blit(color, (WIDTH/18, HEIGHT/4))
@@ -443,8 +428,6 @@ def game2():
 
     clock = pygame.time.Clock()
 
-    player1score = 0
-    player2score = 0
     size = 3
     player=1   
     gameOver=False
