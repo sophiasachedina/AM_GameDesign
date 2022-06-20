@@ -80,6 +80,9 @@ run=True #run the while
 namecolor=(0,105,105)  #text  the name
 boxcolor= (200,200,200)  #text b
 
+#settings variable
+menuColor = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+
 
 #menu function
 def Menu(Title, message, MENU):
@@ -266,21 +269,86 @@ def score(titleF,fileN):
 
 #settings function
 def settings():
-    Menu("Settings",messageSettings, False)
+    #Menu("Settings",messageSettings, False)
+    #while True:
+        #for event in pygame.event.get():
+            #if event.type==pygame.QUIT:
+                #Menu(titleMain,messageMenu,True)
+            #if event.type == pygame.MOUSEBUTTONDOWN:
+                #mousePos = pygame.mouse.get_pos()
+                #mx = mousePos[0]
+                #my = mousePos[1]
+                #if Button_changecolors.collidepoint((mx, my)):
+                    #print("code to change colors")
+                #if Button_changescreensize.collidepoint((mx, my)):
+                    #print("code to change size")
+                #if Button_changesound.collidepoint((mx, my)):
+                    #print("code to change sounds")
+    global menuColor
+    global screen 
+    global WIDTH
+    global HEIGHT
+    title=TITLE_FONT.render('Settings', 1, colors.get('BLACK'))
+
+    screen.fill(colors.get("white"))
+
+    color=MENU_FONT.render('Change Background Color:', 1, colors.get('PINK'))
+    screen.blit(color, (WIDTH/18, HEIGHT/4))
+    pygame.display.update()
+    pygame.time.delay(50)
+    
+    
+    #changing background colors randomly
+    colorbutton = pygame.Rect(WIDTH/21, HEIGHT/3, WIDTH//3.8, 40)
+    pygame.draw.rect(screen, colors.get('PINK'), colorbutton)
+
+    textcolor = MENU_FONT.render('Random', 1, colors.get('BLACK'))
+    screen.blit(textcolor, (WIDTH/20, HEIGHT/3))
+
+    #buttons to change size  
+    sizeupbutton=pygame.Rect(WIDTH/20, HEIGHT/1.8, WIDTH//7, 40)
+    sizedownbutton=pygame.Rect(WIDTH/4, HEIGHT/1.8, WIDTH//5, 40)
+    pygame.draw.rect(screen, colors.get('PINK'), sizeupbutton)
+    pygame.draw.rect(screen, colors.get('PINK'), sizedownbutton)
+
+    #text 
+    screen.blit(title, (WIDTH/2.5,50))
+    uptext=MENU_FONT.render('+ 50', 1, colors.get('BLACK'))
+    downtext=MENU_FONT.render('- 50', 1, colors.get('BLACK'))
+    screen.blit(uptext, (WIDTH/18, HEIGHT/1.8))
+    screen.blit(downtext, (WIDTH/4, HEIGHT/1.8))
+    text10=MENU_FONT.render('Change screen size:', 1, colors.get('PINK'))
+    screen.blit(text10, (WIDTH/18, HEIGHT/2.1))
+    pygame.display.update()
+
     while True:
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
-                Menu(titleMain,messageMenu,True)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mousePos = pygame.mouse.get_pos()
-                mx = mousePos[0]
-                my = mousePos[1]
-                if Button_changecolors.collidepoint((mx, my)):
-                    print("code to change colors")
-                if Button_changescreensize.collidepoint((mx, my)):
-                    print("code to change size")
-                if Button_changesound.collidepoint((mx, my)):
-                    print("code to change sounds")
+                run=False
+                Menu(titleMain, messageMenu, True)
+                print("You quit")
+            if event.type==pygame.MOUSEBUTTONDOWN:
+                mousePos=pygame.mouse.get_pos()
+                mx=mousePos[0]
+                my=mousePos[1]
+                #buttons for color
+                #notworking?? idk why
+                if colorbutton.collidepoint((mx, my)):
+                    menuColor = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+                    print("change color")
+                    pygame.display.update()
+                    settings()
+                if sizeupbutton.collidepoint((mx,my)) and WIDTH <1000 and HEIGHT<1000:
+                    WIDTH +=50
+                    HEIGHT +=50
+                    screen=pygame.display.set_mode((WIDTH, HEIGHT))
+                    settings()
+                if sizedownbutton.collidepoint((mx,my)) and WIDTH>600 and HEIGHT>600:
+                    WIDTH -=50
+                    HEIGHT -=50
+                    screen=pygame.display.set_mode((WIDTH, HEIGHT))
+                    settings()
+            pygame.display.update()
 
 def game():
     global mx,my, insSquare, characterx,charactery, cx,cy, rad
@@ -293,18 +361,18 @@ def game():
                 mx = mousePos[0]
                 my = mousePos[1]
         screen.blit(bg, (0,0))
-        keys= pygame.key.get_pressed() #this is a list
-        #mve square
+        keys= pygame.key.get_pressed() 
+        
         if keys[pygame.K_RIGHT] and square.x < WIDTH -(widthbox):
             square.x += speed
             characterx += speed
         if keys[pygame.K_LEFT] and  square.x > speed:
             square.x -= speed
             characterx -= speed
-        if keys[pygame.K_UP] and square.y >speed:   #means clser t 0
+        if keys[pygame.K_UP] and square.y >speed:   
             square.y -= speed
             charactery -= speed
-        if keys[pygame.K_DOWN] and square.y <HEIGHT -heightbox:  #means clser t max value HEIGHT
+        if keys[pygame.K_DOWN] and square.y <HEIGHT -heightbox:  
             square.y += speed
             charactery += speed
             #mve Circle
@@ -314,10 +382,10 @@ def game():
         if keys[pygame.K_a] and  cx > (speed+rad):
             cx -= speed
             insSquare.x -= speed
-        if keys[pygame.K_w] and cy >(speed+rad):   #means clser t 0
+        if keys[pygame.K_w] and cy >(speed+rad):   
             cy -= speed
             insSquare.y -= speed
-        if keys[pygame.K_s] and cy <HEIGHT -(rad):  #means clser t max value HEIGHT
+        if keys[pygame.K_s] and cy <HEIGHT -(rad):  
             cy += speed
             insSquare.y += speed
 
@@ -346,16 +414,17 @@ def game():
         #pygame.draw.rect(screen, colors.get('white'), mountainSquare,)
         pygame.display.update()
         clock.tick(60)
-
+player1score = 0
+player2score = 0
 def game2():
         #Sophia Sachedina
-    #TicTacToe Game
-    #Functions: 
-        #grid(), 
-        #zeroGrid()
-        #drawMarkers()
-        #checkWinner()
-        #gameOver()
+        #TicTacToe Game
+        #Functions: 
+            #grid(), 
+            #zeroGrid()
+            #drawMarkers()
+            #checkWinner()
+            #gameOver()
 
     import pygame, time, random, math, sys, os, datetime
     os.system('cls')
@@ -378,7 +447,7 @@ def game2():
     player2score = 0
     size = 3
     player=1   
-    gameOver=False 
+    gameOver=False
     markers=[] 
     winner = 0 
     lineWidth=10 
@@ -466,6 +535,7 @@ def game2():
         gameEnd()
 
     #function to check for winners
+    #notfullyworking
     def checkWinner():
         global gameOver, winner, player1score, player2score
         x_position=0
@@ -481,6 +551,7 @@ def game2():
                 gameOver = True
                 o_winner()
             #check rows for winner
+            #out of range??
             if markers[0][x_position]+markers[1][x_position]+markers[2][x_position] ==3:
                 winner = 1
                 player1score += 1
@@ -504,18 +575,18 @@ def game2():
             gameOver=True
             o_winner()
         #check for tie
-        if gameOver == False:
-            tie = True
-            for ROW in markers:
-                for COL in ROW:
-                    if COL ==0:
-                        tie = False
+        #if gameOver == False:
+            #tie = True
+            #for ROW in markers:
+                #for COL in ROW:
+                    #if COL ==0:
+                        #tie = False
             #return winner 
-            if tie:  
-                gameOver=True
-                winner=0
-                print(winner)
-                tieGame()
+            #if tie:  
+                #gameOver=True
+                #winner=0
+                #print(winner)
+                #tieGame()
 
     def gameEnd():
         global markers, gameOver
@@ -539,7 +610,7 @@ def game2():
         while run:
             for event in pygame.event.get():
                 for event in pygame.event.get():
-                    print() #go to main menu
+                    Menu(titleMain, messageMenu, True)
                 if event.type==pygame.QUIT:
                         Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("black"))
                         screen.fill(colors.get('white'))
@@ -564,10 +635,7 @@ def game2():
                         screen.fill(backgrnd)
                         screen.blit(text, (WIDTH/2.5, HEIGHT/2.5))
                         Game = False
-                        pygame.display.update()
-                        pygame.time.delay(1000)
-                        pygame.display.quit()
-                        sys.exit()
+                        Menu(titleMain, messageMenu, True)
                         #go to main meny
                 
                     
