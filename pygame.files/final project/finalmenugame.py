@@ -44,31 +44,9 @@ bg=pygame.image.load('pygame.files\\not final project\images\images\\bg1.jpg')
 #character
 character = pygame.image.load('pygame.files\\not final project\images\images\standing.png')
 
-#square variables
-heightbox=50
-widthbox=50
-xbox=100
-ybox=300
-
-characterx = xbox
-charactery = ybox
-
-cx=350
-cy=350
-rad=25
-speed=2
-ibox = rad*math.sqrt(2)
-xig = cx-(ibox/2)
-yig = cy-(ibox/2)
-
 #mouse variables
 mx = 0
 my = 0
-
-#inscribed square and circle variables
-square=pygame.Rect(xbox,ybox,widthbox,heightbox)
-insSquare=pygame.Rect(xig,yig,ibox,ibox)
-squarecolor=colors.get("pink")
 
 mountainSquare=pygame.Rect(250,320,180,250)
 circlecolor=colors.get("blue")
@@ -238,7 +216,7 @@ def score(titleF,fileN):
 
     #back to menu button
     Button_1 = pygame.Rect(50, 50, 100, 50)
-    pygame.draw.rect(screen, colors.get("RED"), Button_1)
+    pygame.draw.rect(screen, colors.get("PINK"), Button_1)
     text1 = MENU_FONT.render("Menu", 1, colors.get("BLACK"))
     screen.blit(text1, (55, 55))
 
