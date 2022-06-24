@@ -17,7 +17,7 @@ colors={"white":(255,255,255),"pink":(255,0,255),"blue":(0,0,255),"limeGreen":(1
 "WHITE" : (255, 255,255), "BROWN" : (166, 42, 42), "GREEN_1" : (0, 255, 0), "ORANGE" : (255, 165, 0),"PINK" : (205, 96, 144),}
 
 #Message Lists
-messageMenu=['Instructions', 'Settings', 'Game 1', 'Game 2', 'Scoreboard', 'Exit']
+messageMenu=['Instructions', 'Settings', 'Level 1', 'Level 2', 'Level 3', 'Scoreboard', 'Exit']
 messageSettings=["Background Color", "Screen Size", "Sound"]
 titleMain="Main Menu"
 clock = pygame.time.Clock()
@@ -33,8 +33,9 @@ Button_Instructions=pygame.Rect(boxsize, 150, WIDTH//4, 40)
 Button_settings=pygame.Rect(boxsize, 200, WIDTH//4, 40)
 Button_Level1=pygame.Rect(boxsize, 250, WIDTH//4, 40)
 Button_Level2=pygame.Rect(boxsize, 300, WIDTH//4, 40)
-Button_scoreboard=pygame.Rect(boxsize, 350, WIDTH//4, 40)
-Button_exit=pygame.Rect(boxsize, 400, WIDTH//4, 40)
+Button_Level3=pygame.Rect(boxsize, 350, WIDTH//4, 40)
+Button_scoreboard=pygame.Rect(boxsize, 400, WIDTH//4, 40)
+Button_exit=pygame.Rect(boxsize, 450, WIDTH//4, 40)
 Button_changecolors=pygame.Rect(boxsize, 150, WIDTH//3, 40)
 Button_changescreensize=pygame.Rect(boxsize, 200, WIDTH//3, 40)
 Button_changesound=pygame.Rect(boxsize, 250, WIDTH//3, 40)
@@ -66,9 +67,11 @@ menuColor = colors.get("white"),
 backgrndClr = menuColor
 
 def namebox():
+    #create screen
     screen=pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption("Get Name")
     screen.fill(menuColor)
+    #username
     username=''
     title=TITLE_FONT.render("Enter Name", 1, boxcolor)
     screen.blit(title,(200,50))
@@ -77,6 +80,7 @@ def namebox():
     while run:
         pygame.display.update()
         for event in pygame.event.get():
+            #go back to menu
             if event.type==pygame.QUIT:
                 #Menu(mainTitle,messageMenu)
                 pygame.quit()
@@ -85,6 +89,7 @@ def namebox():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 #draw box
                 print()
+            #once user types name, go to main menu
             if event.type == pygame.KEYDOWN:
                 if event.key==pygame.K_RETURN:
                     print(username)
@@ -109,6 +114,7 @@ def Menu(Title, message, MENU):
     global screen 
     global WIDTH
     global HEIGHT
+    #Creating "Instructions" Title
     Title = TITLE_FONT.render(Title, 1, colors.get("BLACK"))
     screen.fill(menuColor)
     xd = WIDTH//2 - (Title.get_width()//2)
@@ -123,8 +129,9 @@ def Menu(Title, message, MENU):
         pygame.display.update()
         pygame.time.delay(50)
         yMenu += 50
-    
+    #while loop for buttons
     while MENU:
+        #play again soon if exit
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("BLACK"))
@@ -139,16 +146,25 @@ def Menu(Title, message, MENU):
                 mousePos = pygame.mouse.get_pos()
                 mx = mousePos[0]
                 my = mousePos[1]
+                #calling instructions functions in instructions button
                 if Button_Instructions.collidepoint((mx, my)):
                     instructions("Instructions","pygame.files\\not final project\menu\instructions.txt")
+                #calling settings functions in settings button
                 if Button_settings.collidepoint((mx, my)):
                     settings()
+                #calling game 1 functions in level 1 button
                 if Button_Level1.collidepoint((mx,my)):
                     game()
+                #calling game 2 functions in game 2 button
                 if Button_Level2.collidepoint((mx,my)):
                     game2()
+                #calling game 2 functions in game 2 button
+                if Button_Level3.collidepoint((mx,my)):
+                    game3()
+                #calling scoreboard functions in scoreboard button
                 if Button_scoreboard.collidepoint((mx,my)):
                     score("Scoreboard","scre.txt")
+                #play again goon if exit
                 if Button_exit.collidepoint((mx,my)):
                     Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("PINK"))
                     screen.fill(colors.get('white'))
@@ -238,10 +254,11 @@ def settings():
     global screen 
     global WIDTH
     global HEIGHT
+    #creating settings title
     title=TITLE_FONT.render('Settings', 1, colors.get('BLACK'))
-
+    #filling screen w/ color
     screen.fill(menuColor)
-
+    #creating change bg color text
     color=MENU_FONT.render('Change Background Color:', 1, colors.get('PINK'))
     screen.blit(color, (WIDTH/18, HEIGHT/4))
     pygame.display.update()
@@ -272,6 +289,7 @@ def settings():
     pygame.display.update()
 
     while True:
+        #menu if exit
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 run=False
@@ -282,17 +300,18 @@ def settings():
                 mx=mousePos[0]
                 my=mousePos[1]
                 #buttons for color
-                #notworking?? idk why
                 if colorbutton.collidepoint((mx, my)):
                     menuColor = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
                     print("change color")
                     pygame.display.update()
                     settings()
+                #button to increase size
                 if sizeupbutton.collidepoint((mx,my)) and WIDTH <1000 and HEIGHT<1000:
                     WIDTH +=50
                     HEIGHT +=50
                     screen=pygame.display.set_mode((WIDTH, HEIGHT))
                     settings()
+                #button to decrease size
                 if sizedownbutton.collidepoint((mx,my)) and WIDTH>600 and HEIGHT>600:
                     WIDTH -=50
                     HEIGHT -=50
@@ -300,6 +319,7 @@ def settings():
                     settings()
             pygame.display.update()
 
+#level 1
 def game():
     global screen, WIDTH, HEIGHT
     #while run:
@@ -307,11 +327,13 @@ def game():
             #if event.type==pygame.QUIT:
                 #Menu(titleMain,messageMenu,True)
     #SophiaSachedina
-#pianoTilesGame
+    #pianoTilesGame
+
     import pygame, os, sys, random
     os.system('cls')
     pygame.init()
 
+    #new window variables
     GWIDTH = 300
     GHEIGHT = 510
     gscreen = pygame.display.set_mode((GWIDTH, GHEIGHT))
@@ -359,9 +381,11 @@ def game():
     tilewidth = GWIDTH//4
     tileheight = 130
 
+    #function for after score is shown - play again or no
     def gameEnd():
         global MENU_FONT
         Game = False
+        #resize screen
         screen=pygame.display.set_mode((WIDTH, HEIGHT))
         screen.fill(menuColor)
         #question
@@ -381,8 +405,10 @@ def game():
         run = True
         while run:
             for event in pygame.event.get():
+                #menu if quit
                 for event in pygame.event.get():
                     Menu(titleMain, messageMenu, True)
+                    #updating score if user quits
                 if event.type==pygame.QUIT:
                         Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("BLACK"))
                         screen.fill(menuColor)
@@ -403,6 +429,7 @@ def game():
                     mousePos=pygame.mouse.get_pos()
                     mx=mousePos[0]
                     my=mousePos[1]
+                    #rerun game and update score if user plays again
                     if Button_yes.collidepoint((mx, my)):
                         run = False
                         name= "Sophia"
@@ -416,6 +443,7 @@ def game():
                         #zero_Array()
                         gameOver = False
                         game()
+                    #back to menu and updates score if user says no
                     if Button_no.collidepoint((mx, my)):
                         text=MENU_FONT.render('Bye!', 1, (circlecolor))
                         screen.fill(menuColor)
@@ -432,6 +460,9 @@ def game():
 
     run = True
 
+##reference for classes
+#Python-Games/objects.py at master · pyGuru123/Python-Games (github.com)
+#link to this is also in powerpoint
     #creating tile
     class Tile(pygame.sprite.Sprite):
         def __init__(self, x, y, gscreen):
@@ -474,7 +505,7 @@ def game():
     #scroll = 0
     numtile = 1
     score = 0
-    speed = 7
+    speed = 5
 
     pos = None
 
@@ -482,6 +513,7 @@ def game():
     gamepage = False
     gameover = False
 
+#function for after a tile reaches the bottom and the game ends
     def scorescreen():
         global MENU_FONT
         Game = False
@@ -494,6 +526,9 @@ def game():
         pygame.time.delay(2000)
         gameEnd()
 
+#reference for while loop
+#Python-Games/main.py at master · pyGuru123/Python-Games (github.com)
+#link to this is also in powerpoint
     run = True
     while run:
         pos = None
@@ -504,11 +539,10 @@ def game():
                 #Menu(titleMain,messageMenu,True)
                 screen=pygame.display.set_mode((WIDTH, HEIGHT))
                 Menu(titleMain,messageMenu,True)
-                #pygame.quit()
-                #sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = event.pos
                 print(pos)
+        #homescreen for game so user can decide when to start
         if homescreen:
             gscreen.blit(logo, (GWIDTH//8, GWIDTH//10))
             gscreen.blit(startbutton, startrect)
@@ -523,7 +557,7 @@ def game():
                 tile_group.add(t)
 
                 pos = None
-
+        # when game is running update tiles and kill when user clicks
         if gamepage:
             #tile_group.update(speed)
             for tile in tile_group:
@@ -537,7 +571,7 @@ def game():
                 if tile.rect.bottom >= GHEIGHT:
                     gameover = True
                     #tilebottom()
-
+        #make tiles move down nd add score once user clicks the tile
             #if scroll >= (numtile*tileheight):
             if len(tile_group) > 0:
                 t = tile_group.sprites()[-1]
@@ -615,6 +649,7 @@ def game2():
     tilewidth = GWIDTH//4
     tileheight = 130
 
+#function for after a tile reaches the bottom and the game ends
     def scorescreen():
         global MENU_FONT
         Game = False
@@ -627,6 +662,7 @@ def game2():
         pygame.time.delay(2000)
         gameEnd()
 
+#function for after score is shown - play again or no
     def gameEnd():
         global MENU_FONT
         Game = False
@@ -651,6 +687,7 @@ def game2():
             for event in pygame.event.get():
                 for event in pygame.event.get():
                     Menu(titleMain, messageMenu, True)
+                #updating score if user quits
                 if event.type==pygame.QUIT:
                         Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("BLACK"))
                         screen.fill(menuColor)
@@ -667,10 +704,12 @@ def game2():
                         pygame.display.update()
                         pygame.time.delay(2000)
                         Menu(titleMain, messageMenu, True)
+            
                 if event.type==pygame.MOUSEBUTTONDOWN:
                     mousePos=pygame.mouse.get_pos()
                     mx=mousePos[0]
                     my=mousePos[1]
+                    #rerun game and update score if user plays again
                     if Button_yes.collidepoint((mx, my)):
                         run = False
                         name= "Sophia"
@@ -684,6 +723,7 @@ def game2():
                         #zero_Array()
                         gameOver = False
                         game2()
+                    #update score and go back to menu if user clicks no
                     if Button_no.collidepoint((mx, my)):
                         text=MENU_FONT.render('Bye!', 1, (menuColor))
                         screen.fill(menuColor)
@@ -700,6 +740,9 @@ def game2():
 
     run = True
 
+##reference for classes
+#Python-Games/objects.py at master · pyGuru123/Python-Games (github.com)
+#link to this is also in powerpoint
     #creating tile
     class Tile(pygame.sprite.Sprite):
         def __init__(self, x, y, gscreen):
@@ -742,7 +785,7 @@ def game2():
     #scroll = 0
     numtile = 1
     score = 0
-    speed = 12
+    speed = 10
 
     pos = None
 
@@ -750,6 +793,9 @@ def game2():
     gamepage = False
     gameover = False
 
+#reference for while loop
+#Python-Games/main.py at master · pyGuru123/Python-Games (github.com)
+#link to this is also in powerpoint
     run = True
     while run:
         pos = None
@@ -765,6 +811,7 @@ def game2():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = event.pos
                 print(pos)
+        #homescreen for game so user can decide when to start
         if homescreen:
             gscreen.blit(logo, (GWIDTH//8, GWIDTH//10))
             gscreen.blit(startbutton, startrect)
@@ -779,7 +826,7 @@ def game2():
                 tile_group.add(t)
 
                 pos = None
-
+        #make tiles move down nd add score once user clicks the tile
         if gamepage:
             #tile_group.update(speed)
             for tile in tile_group:
@@ -794,6 +841,277 @@ def game2():
                     gameover = True
                     #tilebottom()
 
+            #if scroll >= (numtile*tileheight):
+            if len(tile_group) > 0:
+                t = tile_group.sprites()[-1]
+                if t.rect.top + speed >= 0:
+                    x = random.randint(0,3)
+                    y = -tileheight - (0-t.rect.top)
+                    t = Tile(x*tilewidth, y, gscreen)
+                    tile_group.add(t)
+                    numtile += 1
+                    #score+=1
+
+            if gameover: 
+                speed = 0
+                scorescreen()
+                
+        clock.tick(FPS)
+        pygame.display.update()
+
+#level 3
+def game3():
+    global screen, WIDTH, HEIGHT
+    #while run:
+        #for event in pygame.event.get():
+            #if event.type==pygame.QUIT:
+                #Menu(titleMain,messageMenu,True)
+    #SophiaSachedina
+    #pianoTilesGame
+
+    import pygame, os, sys, random
+    os.system('cls')
+    pygame.init()
+
+    #new window variables
+    GWIDTH = 300
+    GHEIGHT = 510
+    gscreen = pygame.display.set_mode((GWIDTH, GHEIGHT))
+    pygame.display.set_caption("Piano Tiles Game")
+
+    #fonts
+    TITLE_FONT = pygame.font.SysFont('comicsans', GWIDTH//20)
+    MENU_FONT = pygame.font.SysFont('comicsans', GWIDTH//30)
+    size = 3
+
+    #tile size variables
+    tilewidth = GWIDTH//4
+    tileheight = 130
+
+
+
+    #list for colors
+    colors={"limeGreen":(153,255,51),
+    "RED" : (255, 0, 0), "GREEN" : (0, 255, 0), "BLUE" : (0, 0,255), 
+    "BLACK" : (0, 0, 0), "GREY" : (190, 190, 190), "WHITE" : (255, 255,255), 
+    "BROWN" : (166, 42, 42), "GREEN_1" : (0, 255, 0), 
+    "ORANGE" : (255, 165, 0),"PINK" : (205, 96, 144),
+    "LIGHTBLUE" : (108, 166, 205)}
+    textcolor = colors.get("BLACK")
+
+    #image variables
+    #background
+    bgimage = pygame.image.load("pygame.files\\final project\\bgpt.png")
+    bgimage = pygame.transform.scale(bgimage, (GWIDTH, GHEIGHT))
+    #startbutton
+    startbutton = pygame.image.load("pygame.files\\final project\startbutton.JPG")
+    startbutton = pygame.transform.scale(startbutton, (GWIDTH/2.5, GHEIGHT//10))
+    startrect = startbutton.get_rect(center = (GWIDTH//2, GHEIGHT - 100))
+    #logo
+    logo = pygame.image.load("pygame.files\\final project\piano.png")
+    logo = pygame.transform.scale(logo, (GWIDTH//1.3, GHEIGHT//2.5))
+    #Piano Tiles Game Title
+    gametitle = pygame.image.load("pygame.files\\final project\gametitle.JPG")
+    gametitle = pygame.transform.scale(gametitle, (GWIDTH/1.2, GHEIGHT//8))
+    gametitlerect = startbutton.get_rect(center = (GWIDTH//3.5, GHEIGHT - 200))
+    clock = pygame.time.Clock()
+    FPS = 30
+
+    #tile variables
+    tilewidth = GWIDTH//4
+    tileheight = 130
+
+    #function for after score is shown - play again or no
+    def gameEnd():
+        global MENU_FONT
+        Game = False
+        #resize screen
+        screen=pygame.display.set_mode((WIDTH, HEIGHT))
+        screen.fill(menuColor)
+        #question
+        textagn=MENU_FONT.render('Would you like to play again?', 1, (colors.get("PINK")))
+        screen.blit(textagn,(WIDTH//4, HEIGHT//8))
+        #buttons yes and no
+        Button_yes=pygame.Rect(WIDTH/4, HEIGHT//2, 100, 50)
+        Button_no=pygame.Rect(size*WIDTH/4, HEIGHT//2, 100, 50)
+        pygame.draw.rect(screen, colors.get('PINK'), Button_yes)
+        pygame.draw.rect(screen, colors.get('PINK'), Button_no)
+        #text yes and no
+        textYes=MENU_FONT.render('Yes', 1, (colors.get("BLACK")))
+        textNo=MENU_FONT.render('No', 1, (colors.get("BLACK")))
+        screen.blit(textYes, (WIDTH//4, HEIGHT//2))
+        screen.blit(textNo, (size*WIDTH//4, HEIGHT//2))
+        pygame.display.update()
+        run = True
+        while run:
+            for event in pygame.event.get():
+                #menu if quit
+                for event in pygame.event.get():
+                    Menu(titleMain, messageMenu, True)
+                    #updating score if user quits
+                if event.type==pygame.QUIT:
+                        Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("BLACK"))
+                        screen.fill(menuColor)
+                        xd = WIDTH//2 - (Title.get_width()//2)
+                        yd = HEIGHT//2- 40
+                        screen.blit(Title, (xd, yd))
+                        name= "Sophia"
+                        scorenum= score
+                        date=datetime.datetime.now()
+                        scoreLine=str(scorenum)+"      "+name + "      "+date.strftime("%m-%d-%Y")+ "\n"
+                        scoreile = open("scre.txt", 'a')
+                        scoreile.write(scoreLine)
+                        scoreile.close()
+                        pygame.display.update()
+                        pygame.time.delay(2000)
+                        Menu(titleMain, messageMenu, True)
+                if event.type==pygame.MOUSEBUTTONDOWN:
+                    mousePos=pygame.mouse.get_pos()
+                    mx=mousePos[0]
+                    my=mousePos[1]
+                    #rerun game and update score if user plays again
+                    if Button_yes.collidepoint((mx, my)):
+                        run = False
+                        name= "Sophia"
+                        scorenum= score
+                        date=datetime.datetime.now()
+                        scoreLine=str(scorenum)+"      "+name + "      "+date.strftime("%m-%d-%Y")+ "\n"
+                        scoreile = open("scre.txt", 'a')
+                        scoreile.write(scoreLine)
+                        scoreile.close()
+                        markers = []
+                        #zero_Array()
+                        gameOver = False
+                        game()
+                    #back to menu and updates score if user says no
+                    if Button_no.collidepoint((mx, my)):
+                        text=MENU_FONT.render('Bye!', 1, (circlecolor))
+                        screen.fill(menuColor)
+                        screen.blit(text, (WIDTH/2.5, HEIGHT/2.5))
+                        name= "Sophia"
+                        scorenum= score
+                        date=datetime.datetime.now()
+                        scoreLine=str(scorenum)+"      "+name + "      "+date.strftime("%m-%d-%Y")+ "\n"
+                        scoreile = open("scre.txt", 'a')
+                        scoreile.write(scoreLine)
+                        scoreile.close()
+                        Game = False
+                        Menu(titleMain, messageMenu, True)
+
+    run = True
+
+##reference for classes
+#Python-Games/objects.py at master · pyGuru123/Python-Games (github.com)
+#link to this is also in powerpoint
+    #creating tile
+    class Tile(pygame.sprite.Sprite):
+        def __init__(self, x, y, gscreen):
+            super(Tile, self).__init__()
+
+            self.gscreen = gscreen
+            self.x = x
+            self.y = y
+            self.color = colors.get("BLACK")
+
+            #rectangle
+            self.surface = pygame.Surface((tilewidth, tileheight), pygame.SRCALPHA)
+            self.rect = self.surface.get_rect()
+            self.rect.x = x
+            self.rect.y = y
+
+            self.center = tilewidth//2, tileheight//2 +15
+            self.circlecolor = colors.get("LIGHTBLUE")
+            self.linecolor = colors.get("LIGHTBLUE")
+            self.circlepos = tilewidth//2, tileheight//1.5
+            self.linestart = self.circlepos[0], self.circlepos[1] - 14
+            self.lineend = self.center[0], 20
+        
+        def update(self, speed):
+            self.rect.y += speed
+            if self.rect.y>= GHEIGHT:
+                self.kill()
+
+            pygame.draw.rect(self.surface, self.color, (0,0, tilewidth, tileheight))
+            pygame.draw.circle(self.surface, self.circlecolor, self.circlepos, 12, 3)
+            pygame.draw.line(self.surface, self.linecolor, self.linestart, self.lineend, 3)
+
+            self.gscreen.blit(self.surface, self.rect)
+
+    #t = Tile(0,10, gscreen)
+    tile_group = pygame.sprite.Group()
+
+
+    #variables to move tiles
+    #scroll = 0
+    numtile = 1
+    score = 0
+    speed = 15
+
+    pos = None
+
+    homescreen = True
+    gamepage = False
+    gameover = False
+
+#function for after a tile reaches the bottom and the game ends
+    def scorescreen():
+        global MENU_FONT
+        Game = False
+        screen=pygame.display.set_mode((WIDTH, HEIGHT))
+        screen.fill(menuColor)
+        score1 = str(score)
+        scoretext = MENU_FONT.render('Congrats! Your score is: '+score1, 1, (colors.get("PINK")))
+        screen.blit(scoretext, (WIDTH/4, HEIGHT/8))
+        pygame.display.update()
+        pygame.time.delay(2000)
+        gameEnd()
+
+#reference for while loop
+#Python-Games/main.py at master · pyGuru123/Python-Games (github.com)
+#link to this is also in powerpoint
+    run = True
+    while run:
+        pos = None
+        gscreen.blit(bgimage, (0,0)) 
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                run = False
+                #Menu(titleMain,messageMenu,True)
+                screen=pygame.display.set_mode((WIDTH, HEIGHT))
+                Menu(titleMain,messageMenu,True)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = event.pos
+                print(pos)
+        #homescreen for game so user can decide when to start
+        if homescreen:
+            gscreen.blit(logo, (GWIDTH//8, GWIDTH//10))
+            gscreen.blit(startbutton, startrect)
+            gscreen.blit(gametitle, gametitlerect)
+
+            if pos and startrect.collidepoint(pos):
+                homescreen = False
+                gamepage = True
+
+                x = random.randint(0,3)
+                t = Tile(x*tilewidth, -tileheight, gscreen)
+                tile_group.add(t)
+
+                pos = None
+        # when game is running update tiles and kill when user clicks
+        if gamepage:
+            #tile_group.update(speed)
+            for tile in tile_group:
+                tile.update(speed)
+                if pos:
+                    if tile.rect.collidepoint(pos):
+                        tile.kill()
+                        score += 1
+                        print(score)
+                        #print score on the screen
+                if tile.rect.bottom >= GHEIGHT:
+                    gameover = True
+                    #tilebottom()
+        #make tiles move down nd add score once user clicks the tile
             #if scroll >= (numtile*tileheight):
             if len(tile_group) > 0:
                 t = tile_group.sprites()[-1]

@@ -4,7 +4,8 @@ The object of the game is to click on
 all the tiles without letting any of them
 get to the bottom of the screen.
 Level 1 is a slower level,
-and Level 2 is a faster level.
+and Level 2 is a faster level
+and Level 3 is the fastest level.
 
 Good Luck!
 Press the x in the corner to return to the Menu. 
