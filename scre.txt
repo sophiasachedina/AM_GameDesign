@@ -1,1 +1,8 @@
 
+1      Sophia      06-24-2022
+1      Sophia      06-24-2022
+1      Sophia      06-24-2022
+22      Sophia      06-24-2022
+<function score at 0x000002B9FC1AE560>      Sophia      06-24-2022
+2      Sophia      06-24-2022
+1      Sophia      06-24-2022

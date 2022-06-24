@@ -173,13 +173,6 @@ def Menu(Title, message, MENU):
                     score("Scoreboard","scre.txt")
                 if Button_exit.collidepoint((mx,my)):
                     Title = TITLE_FONT.render("Play Again Soon!", 1, colors.get("PINK"))
-                    name="Sophia"
-                    scorenum= score
-                    date=datetime.datetime.now()
-                    scoreLine=str(scorenum)+"      "+name + "      "+date.strftime("%m-%d-%Y")+ "\n"
-                    scoreile = open("scre.txt", 'a')
-                    scoreile.write(scoreLine)
-                    scoreile.close()
                     screen.fill(colors.get('white'))
                     xd = WIDTH//2 - (Title.get_width()//2)
                     yd = HEIGHT//2- 40
@@ -503,7 +496,7 @@ def game():
     #scroll = 0
     numtile = 1
     score = 0
-    speed = 5
+    speed = 7
 
     pos = None
 
@@ -664,8 +657,6 @@ def game2():
         #question
         textagn=MENU_FONT.render('Would you like to play again?', 1, (colors.get("PINK")))
         screen.blit(textagn,(WIDTH//4, HEIGHT//8))
-        #textscore=MENU_FONT.render("Congrats! Your score is: ", +score, 1, (colors.get("PINK")))
-        #screen.blit(textscore, (WIDTH/2.5, HEIGHT/1.5))
         #buttons yes and no
         Button_yes=pygame.Rect(WIDTH/4, HEIGHT//2, 100, 50)
         Button_no=pygame.Rect(size*WIDTH/4, HEIGHT//2, 100, 50)
@@ -773,7 +764,7 @@ def game2():
     #scroll = 0
     numtile = 1
     score = 0
-    speed = 10
+    speed = 12
 
     pos = None
 
