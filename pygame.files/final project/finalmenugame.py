@@ -84,7 +84,8 @@ namecolor=(colors.get("BLACK"))
 boxcolor= (colors.get("PINK"))  
 
 #settings variable
-menuColor = colors.get("white")
+menuColor = colors.get("white"), 
+backgrndClr = menuColor
 
 def namebox():
     screen=pygame.display.set_mode((WIDTH,HEIGHT))
@@ -183,7 +184,7 @@ def Menu(Title, message, MENU):
                     xd = WIDTH//2 - (Title.get_width()//2)
                     yd = HEIGHT//2- 40
                     screen.blit(Title, (xd, yd))
-                    pygame.display.update(2000)
+                    pygame.display.update()
                     pygame.quit()
                     sys.exit()
 
@@ -197,12 +198,6 @@ def instructions(titleF,fileN):
     Title = TITLE_FONT.render(titleF, 1, colors.get("BLACK"))
     xd = WIDTH//2 - (Title.get_width()//2)
     screen.blit(Title, (xd, 50))
-
-    #play button 
-    Button_1 = pygame.Rect(200, 400, 100, 50)
-    text1 = MENU_FONT.render("play", 1, colors.get("BLACK"))
-    pygame.draw.rect(screen, colors.get("ORANGE"), Button_1)
-    screen.blit(text1, (225, 410))
 
     #variables to read files 
     myFile = open(fileN, "r")
@@ -224,12 +219,6 @@ def instructions(titleF,fileN):
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 Menu(titleMain,messageMenu, True)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mousePos = pygame.mouse.get_pos()
-                mx = mousePos[0]
-                my = mousePos[1]
-                if Button_1.collidepoint((mx, my)):
-                    Menu(titleMain,messageMenu, True) 
 
 #score function
 def score(titleF,fileN):
@@ -403,7 +392,7 @@ def game():
         global MENU_FONT
         Game = False
         screen=pygame.display.set_mode((WIDTH, HEIGHT))
-        screen.fill(backgrndClr)
+        screen.fill(menuColor)
         #question
         textagn=MENU_FONT.render('Would you like to play again?', 1, (colors.get("PINK")))
         screen.blit(textagn,(WIDTH//4, HEIGHT//8))
@@ -458,7 +447,7 @@ def game():
                         game()
                     if Button_no.collidepoint((mx, my)):
                         text=MENU_FONT.render('Bye!', 1, (circlecolor))
-                        screen.fill(backgrndClr)
+                        screen.fill(menuColor)
                         screen.blit(text, (WIDTH/2.5, HEIGHT/2.5))
                         name= "Sophia"
                         scorenum= score
@@ -526,7 +515,7 @@ def game():
         global MENU_FONT
         Game = False
         screen=pygame.display.set_mode((WIDTH, HEIGHT))
-        screen.fill(backgrndClr)
+        screen.fill(menuColor)
         score1 = str(score)
         scoretext = MENU_FONT.render('Congrats! Your score is: '+score1, 1, (colors.get("PINK")))
         screen.blit(scoretext, (WIDTH/4, HEIGHT/8))
@@ -659,7 +648,7 @@ def game2():
         global MENU_FONT
         Game = False
         screen=pygame.display.set_mode((WIDTH, HEIGHT))
-        screen.fill(backgrndClr)
+        screen.fill(menuColor)
         score1 = str(score)
         scoretext = MENU_FONT.render('Congrats! Your score is: '+score1, 1, (colors.get("PINK")))
         screen.blit(scoretext, (WIDTH/4, HEIGHT/8))
@@ -671,7 +660,7 @@ def game2():
         global MENU_FONT
         Game = False
         screen=pygame.display.set_mode((WIDTH, HEIGHT))
-        screen.fill(backgrndClr)
+        screen.fill(menuColor)
         #question
         textagn=MENU_FONT.render('Would you like to play again?', 1, (colors.get("PINK")))
         screen.blit(textagn,(WIDTH//4, HEIGHT//8))
@@ -727,8 +716,8 @@ def game2():
                         gameOver = False
                         game2()
                     if Button_no.collidepoint((mx, my)):
-                        text=MENU_FONT.render('Bye!', 1, (circlecolor))
-                        screen.fill(backgrndClr)
+                        text=MENU_FONT.render('Bye!', 1, (menuColor))
+                        screen.fill(menuColor)
                         screen.blit(text, (WIDTH/2.5, HEIGHT/2.5))
                         name= "Sophia"
                         scorenum= score

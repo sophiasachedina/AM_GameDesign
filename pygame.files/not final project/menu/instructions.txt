@@ -1,5 +1,10 @@
-In this game, we need to 
-Use the arrow keys to move the square 
-To move the circle, use W, A, S, and D 
- 
-Click the button below to play
+Welcome to Piano Tiles!
+
+The object of the game is to click on
+all the tiles without letting any of them
+get to the bottom of the screen.
+Level 1 is a slower level,
+and Level 2 is a faster level.
+
+Good Luck!
+Press the x in the corner to return to the Menu. 

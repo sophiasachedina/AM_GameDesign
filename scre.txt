@@ -10,3 +10,16 @@ experiment90      Sophia      06-24-2022
 2      Sophia      06-24-2022
 1      Sophia      06-24-2022
 <function score at 0x000001D929AAE560>      Sophia      06-24-2022
+<function score at 0x000002028238E560>      Sophia      06-24-2022
+0      Sophia      06-24-2022
+0      Sophia      06-24-2022
+<function score at 0x0000024C5E6AE560>      Sophia      06-24-2022
+0      Sophia      06-24-2022
+<function score at 0x0000023B40DAE560>      Sophia      06-24-2022
+<function score at 0x000001A41859E560>      Sophia      06-24-2022
+0      Sophia      06-24-2022
+0      Sophia      06-24-2022
+<function score at 0x00000220E41AE560>      Sophia      06-24-2022
+0      Sophia      06-24-2022
+0      Sophia      06-24-2022
+<function score at 0x000001CFABD8E560>      Sophia      06-24-2022
