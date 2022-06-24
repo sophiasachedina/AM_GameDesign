@@ -37,9 +37,9 @@ Button_changescreensize=pygame.Rect(boxsize, 200, WIDTH//3, 40)
 Button_changesound=pygame.Rect(boxsize, 250, WIDTH//3, 40)
 
 #background
-bg=pygame.image.load('pygame.files\images\images\\bg1.jpg')
+bg=pygame.image.load('pygame.files\\not final project\images\images\\bg1.jpg')
 #character
-character = pygame.image.load('pygame.files\images\images\standing.png')
+character = pygame.image.load('pygame.files\\not final project\images\images\standing.png')
 
 #square variables
 heightbox=50
@@ -118,7 +118,7 @@ def Menu(Title, message, MENU):
                 mx = mousePos[0]
                 my = mousePos[1]
                 if Button_Instructions.collidepoint((mx, my)):
-                    instructions("Instructions","pygame.files\menu\instructions.txt")
+                    instructions("Instructions","pygame.files\\not final project\menu\instructions.txt")
                 if Button_settings.collidepoint((mx, my)):
                     settings()
                 if Button_Level1.collidepoint((mx,my)):
